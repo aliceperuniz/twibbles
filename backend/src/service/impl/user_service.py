@@ -66,6 +66,42 @@ def update_user_privacy(user_id: int, is_private: bool):
         return HttpResponseModel(status_code=500, message=str(e))
 
 
+def update_profile(user_id: int, user_name: str, profile_img_path: str, bio: str):
+    try:
+        with Session(postgresql_engine) as session:
+            statement = select(User).where(User.id == user_id).limit(1)
+            user = session.execute(statement).scalars().first()
+
+            if user is None:
+                return HttpResponseModel(status_code=404, message="User not found")
+            
+            user.user_name = user_name
+            user.user_name = profile_img_path
+            user.user_name = bio
+            session.commit()
+
+            return HttpResponseModel(status_code=200,
+                                        message="User privacy updated")
+    except Exception as e:
+        return HttpResponseModel(status_code=500, message=str(e))
+
+def update_password(user_id: int, password: str):
+    try:
+        with Session(postgresql_engine) as session:
+            statement = select(User).where(User.id == user_id).limit(1)
+            user = session.execute(statement).scalars().first()
+
+            if user is None:
+                return HttpResponseModel(status_code=404, message="User not found")
+            
+            user.password = password
+            session.commit()
+
+            return HttpResponseModel(status_code=200,
+                                        message="User privacy updated")
+    except Exception as e:
+        return HttpResponseModel(status_code=500, message=str(e))
+
 def delete_user(user_id: int):
     try:
         with Session(postgresql_engine) as session:
