@@ -6,7 +6,7 @@ scenarios('../features/cadastro.feature')
 
 @given('Nenhum usuário foi cadastrado ainda 1')
 def nenhum_usuario_cadastrado_1(context):
-    context["db_clean"] = True
+    
 
 @when(parsers.parse('uma requisição "POST" for enviada para "/user/create_user" 1 com os dados:\n   nome de usuário: "{user_name}"\n    email: "{email}"\n    senha: "{senha}"\n    is_private: "{is_private}" 1'))
 def send_post_create_user_success(context, user_name, email, senha, client):

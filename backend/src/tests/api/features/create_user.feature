@@ -16,6 +16,7 @@ When: Uma requisição "POST" for enviada para /users com os dados:
     nome de usuário: "alicep"
     email: "aliceexample.com"
     senha: "senha123"
+    
 Then: O status da resposta deve ser "400"
 And: A mensagem deve ser "Formato de e-mail inválido"
 
